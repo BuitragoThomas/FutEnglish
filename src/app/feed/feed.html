@@ -1,0 +1,109 @@
+<app-navbar [nivelTexto]="'Nivel: ' + currentLevel()"></app-navbar>
+
+<div class="bg-white border-bottom py-3 px-3 px-md-5">
+  <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3">
+    
+    <div class="d-flex flex-wrap align-items-center gap-2 fs-6 text-muted w-100">
+      <span class="me-2 fw-medium">Tu nivel actual:</span>
+      
+      <div class="level-option" [class.active-level]="currentLevel() === 'A1-A2'" (click)="setLevel('A1-A2')">
+        <span class="dot dot-green"></span> A1 / A2 Principiante
+      </div>
+      
+      <div class="level-option" [class.active-level]="currentLevel() === 'B1'" (click)="setLevel('B1')">
+        <span class="dot dot-yellow"></span> B1 Intermedio
+      </div>
+      
+      <div class="level-option" [class.active-level]="currentLevel() === 'B2'" (click)="setLevel('B2')">
+        <span class="dot dot-purple"></span> B2 Avanzado
+      </div>
+    </div>
+
+    <div class="league-filters d-flex gap-3 w-100 overflow-x-auto pb-1 text-muted fw-medium">
+      <span class="active-league text-nowrap">Todas las ligas</span>
+      <span class="text-nowrap">Premier League</span>
+      <span class="text-nowrap">LaLiga</span>
+      <span class="text-nowrap">Champions League</span>
+      <span class="text-nowrap">Liga BetPlay</span>
+    </div>
+  </div>
+</div>
+
+<main class="feed-container py-5">
+  <div class="container feed-content overflow-hidden">
+    
+    <section class="row bg-white rounded-4 shadow-sm mb-5 mx-0 position-relative" style="overflow: hidden;">
+      
+      <div class="col-12 col-lg-6 hero-image-box position-relative p-4 p-md-5 d-flex flex-column justify-content-between min-vh-25">
+        
+        <div class="hero-badges position-relative z-1 d-flex flex-wrap gap-2">
+          <span class="custom-badge bg-navy text-white">
+            <span class="dot-green-small"></span> PREMIER LEAGUE
+          </span>
+          <span class="custom-badge bg-yellow text-dark">B1 Adaptado</span>
+          <span class="custom-badge bg-white text-dark">🕒 Lectura de 4 min</span>
+        </div>
+        
+        <div class="hero-image-placeholder position-absolute top-0 start-0 w-100 h-100 z-0"></div>
+        
+        <div class="hero-footer-tags position-relative z-1 mt-5">
+          <div class="bottom-info-pill bg-white d-inline-flex flex-wrap align-items-center gap-2 shadow-sm">
+            <span class="fw-bold text-dark">
+              <span style="color: #117843;">⚽</span> 90+4' Match Winner
+            </span>
+            <span class="text-secondary small fw-medium ms-1">Emirates Stadium • 60,214 fans</span>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="col-12 col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center">
+        <div class="d-flex flex-wrap justify-content-between mb-3 gap-2">
+          <span class="text-muted text-uppercase fw-bold text-xs">CRÓNICA DESTACADA • VOCABULARIO CLAVE</span>
+          <span class="text-muted fw-bold text-xs">A Dual-Language</span>
+        </div>
+        
+        <h1 class="hero-title mb-3 text-dark fw-bold">Arsenal secures thrilling Derby victory with stoppage-time <span class="text-green-underline">counter-attack</span></h1>
+        
+        <p class="hero-excerpt text-secondary mb-4">
+          The Gunners took all three points tras una actuación defensiva impecable. The manager praised the relentless <span class="text-underline">work rate</span> of his midfielders, noting their quick <span class="text-underline">turnovers</span> and defensive discipline in the final third.
+        </p>
+        
+        <div class="hero-challenge d-flex gap-3 p-3 rounded-3 mb-4 bg-custom-light-green">
+          <span class="icon-green fs-5">🎯</span>
+          <div>
+            <p class="challenge-title fw-bold m-0 mb-1 text-custom-green">RETO B1 DE ESTE ARTÍCULO</p>
+            <p class="challenge-desc text-secondary m-0 small">Identifica 3 colocaciones sobre transiciones ofensivas en el fútbol inglés.</p>
+          </div>
+        </div>
+        
+        <div class="d-flex flex-column flex-sm-row gap-3 align-items-sm-center">
+          <button class="btn-read-large flex-grow-1">Leer noticia ➔</button>
+          <button class="btn-icon">🔖</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-3">
+      <div>
+        <span class="section-tag fw-bold d-block mb-1 text-custom-green text-xs">● FEED DE LECTURA ACTIVA</span>
+        <h2 class="feed-title m-0 fw-bold fs-3">Últimas Noticias de Fútbol</h2>
+        <p class="feed-subtitle text-secondary m-0 mt-1">Lee a tu ritmo y guarda vocabulario nuevo con un solo toque.</p>
+      </div>
+      <div>
+        <span class="count-badge bg-white px-3 py-2 rounded-pill shadow-sm fw-semibold text-dark small">📰 Artículos disponibles en {{ currentLevel() }}</span>
+      </div>
+    </div>
+
+    <div class="row g-4 news-grid">
+    </div>
+    
+    <div class="text-center mt-5">
+      <button class="btn-load-more mb-2 shadow-sm fw-bold">↻ Cargar más noticias</button>
+      <p class="load-more-text text-secondary m-0 small">Mostrando artículos de prensa internacional adaptados para tu nivel {{ currentLevel() }}.</p>
+    </div>
+
+  </div>
+</main>
+
+<app-footer></app-footer>

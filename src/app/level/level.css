@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.level-bg {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(rgba(10, 15, 25, 0.65), rgba(5, 7, 12, 0.85)), 
+              url('../../assets/fondo-estadio.jfif') center center / cover no-repeat;
+  background-color: #0a0f19;
+  overflow-x: hidden; 
+}
+
+.text-shadow {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.custom-bg-light-green { background-color: #d1fae5 !important; }
+.custom-bg-light-yellow { background-color: #fef3c7 !important; }
+.custom-bg-light-blue { background-color: #dbeafe !important; }
+.custom-bg-yellow { background-color: #f59e0b !important; }
+
+.custom-btn-green { background-color: #047857; transition: transform 0.15s ease; }
+.custom-btn-navy { background-color: #0f172a; transition: transform 0.15s ease; }
+.custom-btn-slate { background-color: #475569; transition: transform 0.15s ease; }
+
+.custom-btn-green:hover, .custom-btn-navy:hover, .custom-btn-slate:hover { 
+  transform: translateY(-2px);
+  color: white; 
+}
+
+.custom-border-popular {
+  outline: 2.5px solid #f59e0b;
+}
+
+.popular-ribbon {
+  letter-spacing: 0.5px;
+}

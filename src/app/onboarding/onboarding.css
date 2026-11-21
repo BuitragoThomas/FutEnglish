@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+.landing-bg {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(rgba(10, 20, 40, 0.85), rgba(10, 20, 40, 0.85)), 
+              url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.highlight-green {
+  color: #1a7a3a;
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 6px;
+}
+
+.badge-a1 { background-color: #a7f3d0; color: #065f46; }
+.badge-b2 { background-color: #bfdbfe; color: #1e3a8a; }
+
+.btn-custom-primary {
+  background-color: #0b7a3a;
+  border: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-custom-primary:hover {
+  transform: scale(1.05);
+  background-color: #09632f;
+  color: white;
+}
+
+.demo-highlight {
+  color: #1a7a3a;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.vocab-word {
+  color: #4ade80;
+}
+
+@media (min-width: 768px) {
+  .w-md-auto {
+    width: auto !important;
+  }
+}

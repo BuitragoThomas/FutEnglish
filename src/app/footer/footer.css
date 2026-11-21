@@ -1,0 +1,11 @@
+.custom-footer-link {
+  color: #6c757d;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.custom-footer-link:hover {
+  color: #198754; 
+}

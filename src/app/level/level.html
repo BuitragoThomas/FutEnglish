@@ -1,0 +1,97 @@
+<div class="level-bg min-vh-100 w-100 d-flex justify-content-center align-items-center py-3 py-md-4">
+  <div class="container position-relative z-2 text-center mt-md-0 mt-3">
+    
+    <header class="mb-3 mb-md-4">
+      <div class="d-inline-flex align-items-center gap-2 bg-white text-dark px-3 py-1 rounded-3 fw-bold mb-2" style="font-size: 0.8rem;">
+        <span>⚽</span>
+        <span>FutEnglish</span>
+        <span class="text-warning">•</span>
+      </div>
+      <h1 class="fs-2 fw-bolder text-white text-shadow mb-2">¿Cuál es tu nivel de inglés?</h1>
+      <p class="text-light text-shadow small px-3">
+        Podrás cambiar de nivel en cualquier momento desde la barra superior o dentro de cada noticia.
+      </p>
+    </header>
+
+    <div class="row g-3 justify-content-center w-100 m-0 mx-auto" style="max-width: 1000px;">
+      
+      <div class="col-12 col-md-8 col-lg-4 d-flex">
+        <div class="bg-white rounded-4 p-3 d-flex flex-column w-100 text-start shadow-lg position-relative">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge custom-bg-light-green text-success px-2 py-1 rounded-pill fw-bold" style="font-size: 0.7rem;">NIVEL A1 / A2</span>
+            <span class="bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; font-size: 0.8rem;">⚽</span>
+          </div>
+          <h2 class="fs-5 fw-bolder text-dark mb-2">Principiante</h2>
+          <p class="text-muted mb-3 flex-grow-1" style="font-size: 0.8rem; line-height: 1.4;">
+            Noticias en español con palabras clave de fútbol en inglés para adquirir vocabulario sin fricción.
+          </p>
+          <div class="bg-light rounded-3 p-2 mb-3 mt-auto">
+            <div class="d-flex justify-content-between text-secondary fw-bold" style="font-size: 0.6rem;">
+              <span>EJEMPLO EN LECTURA</span>
+              <span>📖</span>
+            </div>
+            <p class="mb-0 mt-1 text-dark" style="font-size: 0.75rem;">
+              "El Real Madrid ganó el <span class="fw-bold custom-bg-light-green text-success px-1 rounded">match</span> con un <span class="fw-bold custom-bg-light-green text-success px-1 rounded">goal</span> decisivo."
+            </p>
+          </div>
+          <button class="btn w-100 fw-bold py-2 custom-btn-green text-white rounded-3" style="font-size: 0.85rem;" (click)="elegirNivel('A1-A2')">Elegir Principiante ➔</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-8 col-lg-4 d-flex">
+        <div class="bg-white rounded-4 p-3 d-flex flex-column w-100 text-start shadow-lg position-relative custom-border-popular">
+          <div class="popular-ribbon position-absolute top-0 start-50 translate-middle custom-bg-yellow text-dark fw-bold px-2 py-1 rounded-pill" style="font-size: 0.65rem;">
+            ★ MÁS POPULAR
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-2 mt-2">
+            <span class="badge custom-bg-light-yellow text-warning px-2 py-1 rounded-pill fw-bold" style="color: #b45309 !important; font-size: 0.7rem;">NIVEL B1 • RECOMENDADO</span>
+            <span class="bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; font-size: 0.8rem;">🏆</span>
+          </div>
+          <h2 class="fs-5 fw-bolder text-dark mb-2">Intermedio</h2>
+          <p class="text-muted mb-3 flex-grow-1" style="font-size: 0.8rem; line-height: 1.4;">
+            70% inglés y 30% español. El equilibrio perfecto para la inmersión táctica con apoyo contextual.
+          </p>
+          <div class="bg-light rounded-3 p-2 mb-3 mt-auto">
+            <div class="d-flex justify-content-between text-secondary fw-bold" style="font-size: 0.6rem;">
+              <span>EJEMPLO EN LECTURA</span>
+              <span>🌐</span>
+            </div>
+            <p class="mb-0 mt-1 text-dark" style="font-size: 0.75rem;">
+              "Real Madrid <span class="fw-bold custom-bg-light-yellow text-warning px-1 rounded" style="color: #b45309 !important;">won the match</span> with un gol increíble <span class="fw-bold custom-bg-light-yellow text-warning px-1 rounded" style="color: #b45309 !important;">in the last minute</span>."
+            </p>
+          </div>
+          <button class="btn w-100 fw-bold py-2 custom-btn-navy text-white rounded-3" style="font-size: 0.85rem;" (click)="elegirNivel('B1')">Elegir Intermedio ➔</button>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-8 col-lg-4 d-flex">
+        <div class="bg-white rounded-4 p-3 d-flex flex-column w-100 text-start shadow-lg position-relative">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge custom-bg-light-blue text-primary px-2 py-1 rounded-pill fw-bold" style="font-size: 0.7rem;">NIVEL B2</span>
+            <span class="bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; font-size: 0.8rem;">🎖️</span>
+          </div>
+          <h2 class="fs-5 fw-bolder text-dark mb-2">Avanzado</h2>
+          <p class="text-muted mb-3 flex-grow-1" style="font-size: 0.8rem; line-height: 1.4;">
+            Noticias 100% en inglés con análisis táctico británico, conferencias completas y glosario avanzado.
+          </p>
+          <div class="bg-light rounded-3 p-2 mb-3 mt-auto">
+            <div class="d-flex justify-content-between text-secondary fw-bold" style="font-size: 0.6rem;">
+              <span>EJEMPLO EN LECTURA</span>
+              <span>🎓</span>
+            </div>
+            <p class="mb-0 mt-1 text-dark" style="font-size: 0.75rem;">
+              "Real Madrid <span class="fw-bold custom-bg-light-blue text-primary px-1 rounded">clinched the match</span> with a stoppage-time <span class="fw-bold custom-bg-light-blue text-primary px-1 rounded">winner</span>."
+            </p>
+          </div>
+          <button class="btn w-100 fw-bold py-2 custom-btn-slate text-white rounded-3" style="font-size: 0.85rem;" (click)="elegirNivel('B2')">Elegir Avanzado ➔</button>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="mt-4 text-light" style="font-size: 0.75rem;">
+      <span>❓ ¿No estás seguro de tu nivel? <a href="https://www.efset.org/es/quick-check/#" target="_blank" rel="noopener noreferrer" class="text-white fw-bold text-decoration-underline">Puedes hacer una prueba rápida de 15 minutos ➔</a></span>
+    </footer>
+    
+  </div>
+</div>
