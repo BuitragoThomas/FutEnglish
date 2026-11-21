@@ -1,6 +1,6 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
 import { NewsService } from '../services/news.service';
@@ -8,7 +8,7 @@ import { NewsArticle, Level } from '../models/news-article';
 
 @Component({
   selector: 'app-feed',
-  imports: [CommonModule, Footer, Navbar],
+  imports: [CommonModule, Footer, Navbar, RouterLink],
   templateUrl: './feed.html',
   styleUrl: './feed.css'
 })
