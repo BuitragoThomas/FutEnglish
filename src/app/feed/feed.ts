@@ -1,26 +1,53 @@
-import { Component, signal, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
-import { Footer } from '../footer/footer'; 
+import { Footer } from '../footer/footer';
+import { NewsService, NewsArticle } from '../services/news';
 
 @Component({
   selector: 'app-feed',
-  imports: [CommonModule, Footer, Navbar],
+  standalone: true,
+  imports: [Navbar, Footer, RouterLink],
   templateUrl: './feed.html',
   styleUrl: './feed.css'
 })
 export class Feed implements OnInit {
-  currentLevel = signal<'A1-A2' | 'B1' | 'B2'>('B1');
-  constructor(private route: ActivatedRoute) {}
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      if (params['level']) {
-        this.currentLevel.set(params['level']);
-      }
-    });
+  private newsService = inject(NewsService);
+  private route = inject(ActivatedRoute);
+
+  currentLevel = signal<string>('B1');
+  allNews = signal<NewsArticle[]>([]);
+  isLoadingApi = signal<boolean>(false);
+
+  filteredNews = computed(() => {
+    const level = this.currentLevel();
+    return this.allNews().filter(article => article.level === level);
+  });
+
+  heroArticle = computed(() => this.filteredNews()[0] ?? null);
+
+  gridNews = computed(() => this.filteredNews().slice(1));
+
+  ngOnInit(): void {
+    const levelParam = this.route.snapshot.queryParamMap.get('level');
+    if (levelParam) {
+      this.currentLevel.set(levelParam);
+    }
+
+    this.allNews.set(this.newsService.getAllNews());
   }
-  setLevel(level: 'A1-A2' | 'B1' | 'B2') {
+
+  setLevel(level: string): void {
     this.currentLevel.set(level);
+  }
+
+  loadExternalNews(): void {
+    this.isLoadingApi.set(true);
+    this.newsService.getExternalFootballNews().subscribe(apiArticles => {
+      const current = this.allNews();
+      const newOnes = apiArticles.filter(a => !current.some(c => c.id === a.id));
+      this.allNews.set([...current, ...newOnes]);
+      this.isLoadingApi.set(false);
+    });
   }
 }

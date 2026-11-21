@@ -23,7 +23,7 @@ export interface NewsArticle {
 export class NewsService {
   private http = inject(HttpClient);
   
-  private apiUrl = 'https://content.guardianapis.com/search?section=football&page-size=6&show-fields=thumbnail,trailText,bodyText&api-key=test';
+  private apiUrl = 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/news';
 
   private mockNews: NewsArticle[] = [
     {
@@ -34,7 +34,7 @@ export class NewsService {
       league: 'Premier League',
       level: 'B1',
       readTime: '4 min',
-      image: 'assets/arsenal.jpg',
+      image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80',
       stadiumInfo: 'Emirates Stadium • 60,214 fans',
       highlightTag: "90+4' Match Winner",
       challenge: 'Identifica 3 colocaciones sobre transiciones ofensivas en el fútbol inglés.',
@@ -88,7 +88,7 @@ export class NewsService {
       league: 'Liga BetPlay',
       level: 'A1-A2',
       readTime: '3 min',
-      image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?auto=format&fit=crop&w=800&q=80',
       stadiumInfo: 'Estadio El Campín • 36,000 fans',
       highlightTag: 'Clásico BetPlay',
       challenge: 'Identifica palabras clave usadas por el árbitro y los comentaristas.',
@@ -148,31 +148,32 @@ export class NewsService {
   getArticleById(id: number): NewsArticle | undefined {
     return this.mockNews.find(article => article.id === id);
   }
+
   getExternalFootballNews(): Observable<NewsArticle[]> {
     return this.http.get<any>(this.apiUrl).pipe(
       map(response => {
-        const results = response?.response?.results || [];
+        const results = (response?.articles || []).slice(0, 6);
         const levels: ('A1-A2' | 'B1' | 'B2')[] = ['A1-A2', 'B1', 'B2'];
-        
+
         return results.map((item: any, index: number): NewsArticle => ({
           id: 100 + index,
-          title: item.webTitle,
-          excerpt: item.fields?.trailText?.replace(/<[^>]*>/g, '') || 'Read the latest football news in English.',
-          content: item.fields?.bodyText || 'Full match report available on The Guardian.',
-          league: 'International Football',
+          title: item.headline || 'Premier League Live Update',
+          excerpt: item.description || 'Latest football news directly from ESPN.',
+          content: item.description || 'Full match report available on ESPN.',
+          league: 'Premier League',
           level: levels[index % 3],
-          readTime: '4 min',
-          image: item.fields?.thumbnail || 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80',
-          stadiumInfo: 'The Guardian Sport • Live API',
+          readTime: '3 min',
+          image: item.images?.[0]?.url || 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80',
+          stadiumInfo: 'ESPN Sport • Live API',
           highlightTag: 'Live News',
-          challenge: 'Practica comprensión lectora con prensa deportiva real en inglés.',
+          challenge: 'Practica comprensión lectora con noticias reales en inglés.',
           vocabulary: [
             { word: 'fixture', translation: 'partido programado' },
             { word: 'squad', translation: 'plantilla / equipo' }
           ]
         }));
       }),
-      catchError(() => of(this.mockNews))
+      catchError(() => of([]))
     );
   }
 }
