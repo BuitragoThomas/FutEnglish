@@ -161,9 +161,9 @@ export class NewsService {
           ]
         }));
       }),
-      tap(apiArticles => {
+      tap((apiArticles: NewsArticle[]) => {
         const newOnes = apiArticles.filter(
-          a => !this.loadedArticles.some(existing => existing.id === a.id)
+          (a: NewsArticle) => !this.loadedArticles.some(existing => existing.id === a.id)
         );
         this.loadedArticles = [...this.loadedArticles, ...newOnes];
       }),
