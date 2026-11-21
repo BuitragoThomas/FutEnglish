@@ -1,44 +1,55 @@
-import { Component, signal, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Navbar } from '../navbar/navbar';
 import { Footer } from '../footer/footer';
-import { NewsService } from '../services/news.service';
-import { NewsArticle, Level } from '../models/news-article';
+import { NewsService, NewsArticle, Level } from '../services/news.service';
 
 @Component({
   selector: 'app-feed',
-  imports: [CommonModule, Footer, Navbar, RouterLink],
+  standalone: true,
+  imports: [Navbar, Footer, RouterLink],
   templateUrl: './feed.html',
   styleUrl: './feed.css'
 })
 export class Feed implements OnInit {
-  private route = inject(ActivatedRoute);
   private newsService = inject(NewsService);
+  private route = inject(ActivatedRoute);
 
   currentLevel = signal<Level>('B1');
-  newsList = signal<NewsArticle[]>([]);
-  loading = signal(true);
+  allNews = signal<NewsArticle[]>([]);
+  isLoadingApi = signal<boolean>(false);
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      if (params['level']) {
-        this.currentLevel.set(params['level']);
-      }
-      this.loadNews();
+  filteredNews = computed(() => {
+    const level = this.currentLevel();
+    return this.allNews().filter(article => article.level === level);
+  });
+
+  heroArticle = computed(() => this.filteredNews()[0] ?? null);
+
+  gridNews = computed(() => this.filteredNews().slice(1));
+
+  ngOnInit(): void {
+    const levelParam = this.route.snapshot.queryParamMap.get('level') as Level | null;
+    if (levelParam) {
+      this.currentLevel.set(levelParam);
+    }
+
+    this.newsService.getNews().subscribe(news => {
+      this.allNews.set(news);
     });
   }
 
-  setLevel(level: Level) {
+  setLevel(level: Level): void {
     this.currentLevel.set(level);
-    this.loadNews();
   }
 
-  private loadNews() {
-    this.loading.set(true);
-    this.newsService.getNewsByLevel(this.currentLevel()).subscribe(list => {
-      this.newsList.set(list);
-      this.loading.set(false);
+  loadExternalNews(): void {
+    this.isLoadingApi.set(true);
+    this.newsService.getExternalFootballNews().subscribe(apiArticles => {
+      const current = this.allNews();
+      const newOnes = apiArticles.filter(a => !current.some(c => c.id === a.id));
+      this.allNews.set([...current, ...newOnes]);
+      this.isLoadingApi.set(false);
     });
   }
 }

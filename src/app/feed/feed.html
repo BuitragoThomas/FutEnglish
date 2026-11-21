@@ -32,57 +32,58 @@
 <main class="feed-container py-5">
   <div class="container feed-content overflow-hidden">
     
-    <section class="row bg-white rounded-4 shadow-sm mb-5 mx-0 position-relative" style="overflow: hidden;">
-      
-      <div class="col-12 col-lg-6 hero-image-box position-relative p-4 p-md-5 d-flex flex-column justify-content-between min-vh-25">
+    @if (heroArticle(); as hero) {
+      <section class="row bg-white rounded-4 shadow-sm mb-5 mx-0 position-relative" style="overflow: hidden;">
         
-        <div class="hero-badges position-relative z-1 d-flex flex-wrap gap-2">
-          <span class="custom-badge bg-navy text-white">
-            <span class="dot-green-small"></span> PREMIER LEAGUE
-          </span>
-          <span class="custom-badge bg-yellow text-dark">B1 Adaptado</span>
-          <span class="custom-badge bg-white text-dark">🕒 Lectura de 4 min</span>
-        </div>
-        
-        <div class="hero-image-placeholder position-absolute top-0 start-0 w-100 h-100 z-0"></div>
-        
-        <div class="hero-footer-tags position-relative z-1 mt-5">
-          <div class="bottom-info-pill bg-white d-inline-flex flex-wrap align-items-center gap-2 shadow-sm">
-            <span class="fw-bold text-dark">
-              <span style="color: #117843;">⚽</span> 90+4' Match Winner
+        <div class="col-12 col-lg-6 hero-image-box position-relative p-4 p-md-5 d-flex flex-column justify-content-between min-vh-25">
+          
+          <div class="hero-badges position-relative z-1 d-flex flex-wrap gap-2">
+            <span class="custom-badge bg-navy text-white">
+              <span class="dot-green-small"></span> {{ hero.league }}
             </span>
-            <span class="text-secondary small fw-medium ms-1">Emirates Stadium • 60,214 fans</span>
+            <span class="custom-badge bg-yellow text-dark">{{ hero.level }} Adaptado</span>
+            <span class="custom-badge bg-white text-dark">🕒 Lectura de {{ hero.readTime }} min</span>
+          </div>
+          
+          <div class="hero-image-placeholder position-absolute top-0 start-0 w-100 h-100 z-0"
+               [style.backgroundImage]="'url(' + hero.image + ')'"></div>
+          
+          <div class="hero-footer-tags position-relative z-1 mt-5">
+            <div class="bottom-info-pill bg-white d-inline-flex flex-wrap align-items-center gap-2 shadow-sm">
+              <span class="fw-bold text-dark">
+                <span style="color: #117843;">⚽</span> {{ hero.highlightTag }}
+              </span>
+              <span class="text-secondary small fw-medium ms-1">{{ hero.stadiumInfo }}</span>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="col-12 col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center">
+          <div class="d-flex flex-wrap justify-content-between mb-3 gap-2">
+            <span class="text-muted text-uppercase fw-bold text-xs">CRÓNICA DESTACADA • VOCABULARIO CLAVE</span>
+            <span class="text-muted fw-bold text-xs">A Dual-Language</span>
+          </div>
+          
+          <h1 class="hero-title mb-3 text-dark fw-bold">{{ hero.title }}</h1>
+          
+          <p class="hero-excerpt text-secondary mb-4">{{ hero.excerpt }}</p>
+          
+          <div class="hero-challenge d-flex gap-3 p-3 rounded-3 mb-4 bg-custom-light-green">
+            <span class="icon-green fs-5">🎯</span>
+            <div>
+              <p class="challenge-title fw-bold m-0 mb-1 text-custom-green">RETO {{ hero.level }} DE ESTE ARTÍCULO</p>
+              <p class="challenge-desc text-secondary m-0 small">{{ hero.challenge }}</p>
+            </div>
+          </div>
+          
+          <div class="d-flex flex-column flex-sm-row gap-3 align-items-sm-center">
+            <a [routerLink]="['/article', hero.id]" class="btn-read-large flex-grow-1 text-center text-decoration-none">Leer noticia ➔</a>
+            <button class="btn-icon">🔖</button>
           </div>
         </div>
-        
-      </div>
-      
-      <div class="col-12 col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center">
-        <div class="d-flex flex-wrap justify-content-between mb-3 gap-2">
-          <span class="text-muted text-uppercase fw-bold text-xs">CRÓNICA DESTACADA • VOCABULARIO CLAVE</span>
-          <span class="text-muted fw-bold text-xs">A Dual-Language</span>
-        </div>
-        
-        <h1 class="hero-title mb-3 text-dark fw-bold">Arsenal secures thrilling Derby victory with stoppage-time <span class="text-green-underline">counter-attack</span></h1>
-        
-        <p class="hero-excerpt text-secondary mb-4">
-          The Gunners took all three points tras una actuación defensiva impecable. The manager praised the relentless <span class="text-underline">work rate</span> of his midfielders, noting their quick <span class="text-underline">turnovers</span> and defensive discipline in the final third.
-        </p>
-        
-        <div class="hero-challenge d-flex gap-3 p-3 rounded-3 mb-4 bg-custom-light-green">
-          <span class="icon-green fs-5">🎯</span>
-          <div>
-            <p class="challenge-title fw-bold m-0 mb-1 text-custom-green">RETO B1 DE ESTE ARTÍCULO</p>
-            <p class="challenge-desc text-secondary m-0 small">Identifica 3 colocaciones sobre transiciones ofensivas en el fútbol inglés.</p>
-          </div>
-        </div>
-        
-        <div class="d-flex flex-column flex-sm-row gap-3 align-items-sm-center">
-          <button class="btn-read-large flex-grow-1" routerLink="/article/1">Leer noticia ➔</button>
-          <button class="btn-icon">🔖</button>
-        </div>
-      </div>
-    </section>
+      </section>
+    }
 
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-3">
       <div>
@@ -91,35 +92,51 @@
         <p class="feed-subtitle text-secondary m-0 mt-1">Lee a tu ritmo y guarda vocabulario nuevo con un solo toque.</p>
       </div>
       <div>
-        <span class="count-badge bg-white px-3 py-2 rounded-pill shadow-sm fw-semibold text-dark small">📰 Artículos disponibles en {{ currentLevel() }}</span>
+        <span class="count-badge bg-white px-3 py-2 rounded-pill shadow-sm fw-semibold text-dark small">📰 {{ filteredNews().length }} artículos disponibles en {{ currentLevel() }}</span>
       </div>
     </div>
 
-        <div class="row g-4 news-grid">
-      @if (loading()) {
-        <p class="text-center text-secondary">Cargando noticias...</p>
-      } @else if (newsList().length === 0) {
-        <p class="text-center text-secondary">No hay noticias para este nivel todavía.</p>
-      } @else {
-        @for (article of newsList(); track article.id) {
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 rounded-4">
-              <div class="card-body d-flex flex-column">
-                <span class="badge bg-success align-self-start mb-2">{{ article.league }}</span>
-                <h3 class="h5 fw-bold">{{ article.title }}</h3>
-                <p class="text-secondary small flex-grow-1">{{ article.excerpt }}</p>
-                <small class="text-muted">🕒 {{ article.readTime }} min</small>
-                <a class="btn btn-sm btn-success rounded-pill mt-3" [routerLink]="['/article', article.id]">Leer ➔</a>
+    <div class="row g-4 news-grid">
+      @if (gridNews().length > 0) {
+        @for (article of gridNews(); track article.id) {
+          <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <article class="card border-0 rounded-4 shadow-sm overflow-hidden w-100 d-flex flex-column">
+              <div class="position-relative" style="height: 190px;">
+                <img [src]="article.image" [alt]="article.title" class="w-100 h-100 object-fit-cover">
+                <div class="position-absolute top-0 start-0 p-3 d-flex gap-2">
+                  <span class="custom-badge bg-navy text-white">{{ article.league }}</span>
+                  <span class="custom-badge bg-yellow text-dark">{{ article.level }}</span>
+                </div>
               </div>
-            </div>
+
+              <div class="card-body p-4 d-flex flex-column flex-grow-1">
+                <span class="text-muted fw-bold text-xs mb-2">🕒 Lectura de {{ article.readTime }} min</span>
+                <h3 class="fs-5 fw-bold text-dark mb-2">{{ article.title }}</h3>
+                <p class="text-secondary small mb-4 flex-grow-1">{{ article.excerpt }}</p>
+
+                <a [routerLink]="['/article', article.id]" class="btn-read-large text-center text-decoration-none mt-auto">
+                  Leer noticia ➔
+                </a>
+              </div>
+            </article>
           </div>
         }
+      } @else {
+        <div class="col-12 text-center py-5 bg-white rounded-4 shadow-sm">
+          <p class="text-muted mb-0 fw-semibold">No hay más noticias disponibles para el nivel {{ currentLevel() }} en este momento.</p>
+        </div>
       }
     </div>
     
     <div class="text-center mt-5">
-      <button class="btn-load-more mb-2 shadow-sm fw-bold">↻ Cargar más noticias</button>
-      <p class="load-more-text text-secondary m-0 small">Mostrando artículos de prensa internacional adaptados para tu nivel {{ currentLevel() }}.</p>
+      <button class="btn-load-more mb-2 shadow-sm fw-bold" (click)="loadExternalNews()" [disabled]="isLoadingApi()">
+        @if (isLoadingApi()) {
+          Cargando noticias en vivo...
+        } @else {
+          ↻ Cargar más noticias (API en vivo)
+        }
+      </button>
+      <p class="load-more-text text-secondary m-0 small">Mostrando {{ filteredNews().length }} artículos de prensa internacional adaptados para tu nivel {{ currentLevel() }}.</p>
     </div>
 
   </div>
