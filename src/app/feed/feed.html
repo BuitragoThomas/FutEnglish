@@ -78,7 +78,7 @@
         </div>
         
         <div class="d-flex flex-column flex-sm-row gap-3 align-items-sm-center">
-          <button class="btn-read-large flex-grow-1">Leer noticia ➔</button>
+          <button class="btn-read-large flex-grow-1" routerLink="/article/1">Leer noticia ➔</button>
           <button class="btn-icon">🔖</button>
         </div>
       </div>
@@ -109,6 +109,7 @@
                 <h3 class="h5 fw-bold">{{ article.title }}</h3>
                 <p class="text-secondary small flex-grow-1">{{ article.excerpt }}</p>
                 <small class="text-muted">🕒 {{ article.readTime }} min</small>
+                <a class="btn btn-sm btn-success rounded-pill mt-3" [routerLink]="['/article', article.id]">Leer ➔</a>
               </div>
             </div>
           </div>
