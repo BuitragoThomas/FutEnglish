@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh; 
+  background-color: #0a1428; 
+}

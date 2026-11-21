@@ -1,0 +1,120 @@
+.level-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.active-level {
+  background-color: #f5a623;
+  color: white;
+}
+
+.active-level .dot { display: none; } 
+.custom-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.bg-navy { background-color: #111827; }
+.bg-yellow { background-color: #f5a623; }
+.bg-white { background-color: #f8f9fa; }
+
+.dot-green-small {
+  width: 8px;
+  height: 8px;
+  background-color: #4ade80;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.bottom-info-pill {
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 13px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-green { background-color: #28a745; }
+.dot-yellow { background-color: #f5a623; }
+.dot-purple { background-color: #6f42c1; }
+
+.active-league {
+  color: #117843;
+  font-weight: 700;
+}
+
+.league-filters::-webkit-scrollbar {
+  display: none; 
+}
+
+.feed-container {
+  background-color: #8cc350; 
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.hero-image-placeholder {
+  background-image: url('../../assets/arsenal.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.text-xs { font-size: 11px; letter-spacing: 0.5px; }
+.hero-title { font-size: 28px; line-height: 1.2; }
+.text-green-underline { border-bottom: 3px solid #28a745; }
+.text-underline { border-bottom: 1px solid #ccc; }
+.hero-excerpt { font-size: 15px; line-height: 1.6; }
+
+.bg-custom-light-green { background-color: #f4faeb; }
+.text-custom-green { color: #117843; }
+
+.btn-read-large { 
+  background: #117843; 
+  color: white; 
+  border: none; 
+  padding: 12px 25px; 
+  border-radius: 6px; 
+  font-weight: bold; 
+  cursor: pointer; 
+}
+.btn-icon { 
+  background: transparent; 
+  border: 1px solid #ccc; 
+  padding: 10px 15px; 
+  border-radius: 6px; 
+  cursor: pointer; 
+}
+
+.btn-load-more { 
+  background: white; 
+  color: #117843; 
+  border: none; 
+  padding: 12px 24px; 
+  border-radius: 25px; 
+  cursor: pointer; 
+}
+
+.min-vh-25 {
+  min-height: 300px;
+}

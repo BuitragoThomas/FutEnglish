@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-md top-navbar bg-white">
+  <div class="container-fluid px-2 px-md-4">
+    
+    <a class="navbar-brand nav-brand d-flex align-items-center gap-2 m-0" routerLink="/">
+      <div class="logo-icon-box">
+        <span class="logo-icon">⚽</span>
+      </div>
+      <span class="logo-text mb-0">Fut<span class="text-green">English</span><span class="logo-dot">•</span></span>
+      <span class="brand-divider d-none d-sm-block"></span>
+      <span class="brand-name d-none d-sm-block mb-0">FutEnglish</span>
+    </a>
+
+    <button class="navbar-toggler border-0 shadow-none" type="button" (click)="toggleMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [class.show]="isMenuOpen()" id="navbarContent">
+
+      <ul class="navbar-nav mx-auto mb-2 mb-md-0 gap-2 text-center mt-3 mt-md-0">
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link active">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link">Mi vocabulario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link">Noticias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link">Táctica</a>
+        </li>
+      </ul>
+
+      <div class="d-flex justify-content-center pb-3 pb-md-0">
+        <div class="level-pill" [ngClass]="nivelColor">
+          <span class="level-dot">•</span> {{ nivelTexto }}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</nav>
