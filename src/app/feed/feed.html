@@ -95,7 +95,25 @@
       </div>
     </div>
 
-    <div class="row g-4 news-grid">
+        <div class="row g-4 news-grid">
+      @if (loading()) {
+        <p class="text-center text-secondary">Cargando noticias...</p>
+      } @else if (newsList().length === 0) {
+        <p class="text-center text-secondary">No hay noticias para este nivel todavía.</p>
+      } @else {
+        @for (article of newsList(); track article.id) {
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+              <div class="card-body d-flex flex-column">
+                <span class="badge bg-success align-self-start mb-2">{{ article.league }}</span>
+                <h3 class="h5 fw-bold">{{ article.title }}</h3>
+                <p class="text-secondary small flex-grow-1">{{ article.excerpt }}</p>
+                <small class="text-muted">🕒 {{ article.readTime }} min</small>
+              </div>
+            </div>
+          </div>
+        }
+      }
     </div>
     
     <div class="text-center mt-5">
